@@ -8,6 +8,17 @@ public class Cancion {
     private String artista;
 
 
+    public Cancion(String nombre, int duracion, String album, String artista) {
+        this.nombre = nombre;
+        this.duracion = duracion;
+        this.album = album;
+        this.artista = artista;
+    }
+
+    public Cancion(){
+
+    }
+
     public String getNombre() {
         return nombre;
     }
