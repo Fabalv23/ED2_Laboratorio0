@@ -9,15 +9,18 @@ import android.widget.Adapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AdapterSong extends BaseAdapter {
 
-    private Activity activity;
+
+    Context context;
     private List<Cancion> items;
 
-    public AdapterSong(Activity activity, List<Cancion> items) {
-        this.activity = activity;
+    public AdapterSong(Context context, List<Cancion> items) {
+        this.context = context;
         this.items = items;
     }
 
@@ -33,20 +36,15 @@ public class AdapterSong extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
-
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
         View v = view;
-
-
-        if (view == null) {
-            LayoutInflater inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inf.inflate(R.layout.item_cancion, null);
-        }
+        LayoutInflater inflater = LayoutInflater.from(context);
+        v = inflater.inflate(R.layout.item_cancion, null);
 
         Cancion dir = items.get(i);
 
