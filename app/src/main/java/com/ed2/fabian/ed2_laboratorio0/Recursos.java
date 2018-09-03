@@ -20,7 +20,7 @@ public class Recursos {
 
     }
 
-    public Cancion search (String llave){
+    public Cancion search(String llave){
         return biblioteca.get(llave);
     }
 

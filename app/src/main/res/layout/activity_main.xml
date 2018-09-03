@@ -23,15 +23,17 @@
             android:paddingBottom="10dp"
             android:id="@+id/search_song"
             />
+
+        <ImageButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="#FFFFFF"
+            android:src="@drawable/ic_search_black_24dp"
+            android:contentDescription="@string/descripcion"
+            android:layout_alignParentEnd="true"
+            />
+
     </RelativeLayout>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_buscar"
-        android:layout_alignParentEnd="true"
-        android:drawableStart="@drawable/ic_search_black_24dp"
-        android:text="Search"
-        />
 <ListView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -39,16 +41,4 @@
     android:id="@+id/canciones">
 </ListView>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="50dp"
-        android:id="@+id/busquedas">
-    </ListView>
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="50dp"
-        android:id="@+id/lv_play">
-    </ListView>
 </RelativeLayout>

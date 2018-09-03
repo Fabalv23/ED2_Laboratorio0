@@ -19,8 +19,6 @@ public class AdapterSong extends BaseAdapter {
     Context context;
     private List<Cancion> items;
 
-    Cancion mostrar;
-
     public AdapterSong(Context context, List<Cancion> items) {
         this.context = context;
         this.items = items;
