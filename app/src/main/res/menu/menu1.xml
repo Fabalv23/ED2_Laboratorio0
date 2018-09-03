@@ -7,4 +7,25 @@
     <item
         android:id="@+id/todas"
         android:title="Inicio"/>
+
+    <item
+
+        android:id="@+id/btn_ascname"
+        android:title="Ascendente Nombre"
+        />
+    <item
+
+        android:id="@+id/btn_ascdur"
+        android:title="Ascendente Duracion"
+        />
+    <item
+
+        android:id="@+id/btn_dscdur"
+        android:title="Descendente Duracion"
+        />
+    <item
+
+        android:id="@+id/btn_dscname"
+        android:title="Descendente Nombre"
+        />
 </menu>

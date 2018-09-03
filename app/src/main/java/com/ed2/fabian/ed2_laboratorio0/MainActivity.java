@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -31,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Cancion> encontradas;
     ListView listado_canciones,busquedas,mis_canciones;
     Button buscador;
+    MenuItem asc_name,asc_dur,dsc_name,dsc_dur;
     EditText nombre_buscar;
     AdapterSong adapter;
-
 
 
 
@@ -62,8 +64,9 @@ public class MainActivity extends AppCompatActivity {
                 Cancion buscada = r1.search(x);
 
                 if (buscada!=null) {
-
-                    nombre_buscar.setText(" ");
+                    listado_canciones.setVisibility(View.INVISIBLE);
+                    mis_canciones.setVisibility(View.INVISIBLE);
+                    busquedas.setVisibility(View.VISIBLE);
 
                     encontradas.add(buscada);
                     adapter = new AdapterSong(getApplicationContext(), encontradas);
@@ -76,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
 
                     toast.show();
                 }
+
+
             }
         });
 
@@ -111,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(),"Cancion Agregada",Toast.LENGTH_SHORT);
 
                 toast.show();
+
+                encontradas.clear();
             }
         });
 
@@ -142,6 +149,53 @@ public class MainActivity extends AppCompatActivity {
 
                 listado_canciones.setAdapter(adapter1);
                 break;
+
+            case R.id.btn_ascname:
+                Collections.sort(playlist, new Comparator<Cancion>() {
+                    public int compare(Cancion c1, Cancion c2) {
+                        return c2.getNombre().compareTo(c1.getNombre());
+                    }
+                });
+                AdapterSong adapterasc = new AdapterSong(getApplicationContext(), playlist);
+                mis_canciones.setAdapter(adapterasc);
+
+                break;
+
+            case  R.id.btn_dscname:
+                Collections.sort(playlist, new Comparator<Cancion>() {
+                    public int compare(Cancion c1, Cancion c2) {
+                        return c1.getNombre().compareTo(c2.getNombre());
+                    }
+                });
+
+                AdapterSong adapterdsc = new AdapterSong(getApplicationContext(), playlist);
+                mis_canciones.setAdapter(adapterdsc);
+
+                break;
+
+            case  R.id.btn_dscdur:
+                Collections.sort(playlist, new Comparator<Cancion>() {
+                    public int compare(Cancion c1, Cancion c2) {
+                        return (int) (c1.getDuracion() - c2.getDuracion());
+                    }
+                });
+
+                AdapterSong adapterdsc2 = new AdapterSong(getApplicationContext(), playlist);
+                mis_canciones.setAdapter(adapterdsc2);
+                break;
+
+            case  R.id.btn_ascdur:
+                Collections.sort(playlist, new Comparator<Cancion>() {
+                    public int compare(Cancion c1, Cancion c2) {
+                        return (int) (c2.getDuracion() - c1.getDuracion());
+                    }
+                });
+
+                AdapterSong adapterasc2 = new AdapterSong(getApplicationContext(), playlist);
+                mis_canciones.setAdapter(adapterasc2);
+
+                break;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

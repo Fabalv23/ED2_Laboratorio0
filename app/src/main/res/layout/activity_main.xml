@@ -8,12 +8,6 @@
     android:orientation="vertical"
     >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:paddingBottom="50dp"
-        >
 
     <EditText
             android:layout_width="match_parent"
@@ -23,7 +17,7 @@
             android:paddingBottom="10dp"
             android:id="@+id/search_song"
             />
-    </RelativeLayout>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
