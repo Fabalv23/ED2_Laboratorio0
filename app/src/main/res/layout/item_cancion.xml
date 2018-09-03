@@ -23,6 +23,7 @@
             android:text="Nombre de la cancion"
             android:layout_alignParentRight="true"
             android:id="@+id/txt_name"
+            android:textColor="@color/black"
             />
         <TextView
             android:layout_width="match_parent"
@@ -30,6 +31,7 @@
             android:text="Nombre del artista"
             android:layout_alignParentRight="true"
             android:id="@+id/txt_artist"
+            android:textColor="@color/black"
             />
         <TextView
             android:layout_width="match_parent"
@@ -37,6 +39,7 @@
             android:text="Album"
             android:layout_alignParentRight="true"
             android:id="@+id/txt_album"
+            android:textColor="@color/black"
             />
 
 
