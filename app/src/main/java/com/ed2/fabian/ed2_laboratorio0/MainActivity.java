@@ -8,12 +8,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     MenuItem asc_name,asc_dur,dsc_name,dsc_dur;
     EditText nombre_buscar;
     AdapterSong adapter;
-
+    TextView title;
 
 
     @Override
@@ -54,9 +56,15 @@ public class MainActivity extends AppCompatActivity {
         listado_canciones = (ListView)findViewById(R.id.canciones);
         busquedas = (ListView)findViewById(R.id.busquedas);
         mis_canciones = (ListView)findViewById(R.id.lv_play);
+        title = (TextView) findViewById(R.id.titulo);
+
+        title.setVisibility(View.INVISIBLE);
 
         buscador   = (Button) findViewById(R.id.btn_buscar);
         nombre_buscar = (EditText) findViewById(R.id.search_song);
+
+
+
         buscador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        // busqueda de la cancion
         busquedas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -130,17 +138,22 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    //Opciones del menu de los tres puntitos, para armar playlist, lista general y ordenar la playlist
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.play:
+            case R.id.play: //mostrar playlist
+                title.setVisibility(View.VISIBLE);
                 nombre_buscar.setVisibility(View.INVISIBLE);
+                buscador.setVisibility(View.INVISIBLE);
                 listado_canciones.setVisibility(View.INVISIBLE);
                 busquedas.setVisibility(View.INVISIBLE);
                 mis_canciones.setVisibility(View.VISIBLE);
                 AdapterSong adapter = new AdapterSong(getApplicationContext(), playlist);
                 mis_canciones.setAdapter(adapter);
                 break;
-            case R.id.todas:
+            case R.id.todas:    //mostrar lista general
+                title.setVisibility(View.INVISIBLE);
+                buscador.setVisibility(View.VISIBLE);
                 nombre_buscar.setVisibility(View.VISIBLE);
                 mis_canciones.setVisibility(View.INVISIBLE);
                 busquedas.setVisibility(View.INVISIBLE);
@@ -150,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 listado_canciones.setAdapter(adapter1);
                 break;
 
-            case R.id.btn_ascname:
+            case R.id.btn_ascname:  //ordenar ascendente por nombre la playlist
                 Collections.sort(playlist, new Comparator<Cancion>() {
                     public int compare(Cancion c1, Cancion c2) {
                         return c2.getNombre().compareTo(c1.getNombre());
@@ -161,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
 
-            case  R.id.btn_dscname:
+            case  R.id.btn_dscname: //ordenar descendente por nombre la playlist
                 Collections.sort(playlist, new Comparator<Cancion>() {
                     public int compare(Cancion c1, Cancion c2) {
                         return c1.getNombre().compareTo(c2.getNombre());
@@ -173,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
 
-            case  R.id.btn_dscdur:
+            case  R.id.btn_dscdur: //ordenar descendente por duracion la playlist
                 Collections.sort(playlist, new Comparator<Cancion>() {
                     public int compare(Cancion c1, Cancion c2) {
                         return (int) (c1.getDuracion() - c2.getDuracion());
@@ -184,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                 mis_canciones.setAdapter(adapterdsc2);
                 break;
 
-            case  R.id.btn_ascdur:
+            case  R.id.btn_ascdur: //ordenar ascendente por duracion la playlist
                 Collections.sort(playlist, new Comparator<Cancion>() {
                     public int compare(Cancion c1, Cancion c2) {
                         return (int) (c2.getDuracion() - c1.getDuracion());

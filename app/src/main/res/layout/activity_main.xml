@@ -8,6 +8,14 @@
     android:orientation="vertical"
     >
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/titulo"
+        android:text="Playlist"
+        android:textSize="30dp"
+
+        />
 
     <EditText
             android:layout_width="match_parent"
@@ -16,7 +24,9 @@
             android:inputType="text"
             android:paddingBottom="10dp"
             android:id="@+id/search_song"
-            />
+        >
+    <requestFocus />
+    </EditText>
 
     <Button
         android:layout_width="wrap_content"
